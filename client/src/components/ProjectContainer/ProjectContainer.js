@@ -12,11 +12,11 @@ function ProjectWrapper({ project }) {
             <ProjectCard
                 key={ project.id }
                 id={ project._id }
-                name={ project.name }
+                name={ project.title }
                 description={ project.description }
                 date={ project.date = moment().format('YYYY-MM-DD') }
                 progressbar = { project.progressbar || 85 } // default 85%
-                pic={ String(project.pic) }
+                pic={ String(project.image) }
             />
         </div>
     );
