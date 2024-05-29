@@ -8,4 +8,6 @@ router.post('/register-user', createUser)
 
 router.get('/get-all-events', getAllEvents)
 
+router.get('/get-event/:id')
+
 export default router

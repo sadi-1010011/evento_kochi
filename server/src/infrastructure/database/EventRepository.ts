@@ -11,6 +11,9 @@ export class EventRepository implements IEventRepository {
     async findAll(): Promise<IEvent[]> {
         return await EventModel.find().exec();
     }
+    async findById(id: string): Promise<IEvent | null> {
+        return await EventModel.findById(id).exec();
+    }
     async updateById(id: string, event: Partial<IEvent>): Promise<IEvent> {
         const updatedEvent = await EventModel.findByIdAndUpdate(id, event, { new: true }).exec();
         if (!updatedEvent) {
@@ -22,4 +25,4 @@ export class EventRepository implements IEventRepository {
         const deletedEvent = await EventModel.findByIdAndDelete(id).exec();
         return deletedEvent ? true : false;
     }
-}
+}     

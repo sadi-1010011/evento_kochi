@@ -19,4 +19,9 @@ export class EventService {
     async deleteEvent(id: string): Promise<boolean> {
         return await this.eventRepository.deleteById(id);
     }
+
+    async getEvent(id: string): Promise<IEvent | null> {
+        return await this.eventRepository.findById(id);
+       
+    }
 }

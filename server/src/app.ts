@@ -14,7 +14,7 @@ const MONGO_URI: any = process.env.MONGODB_CONNECTION_STRING
 app.use(express.json())
 
 app.use(
-    cors({
+    cors({     
       origin: [
         "http://localhost:3000",
         ],
