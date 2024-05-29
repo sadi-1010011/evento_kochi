@@ -9,6 +9,6 @@ router.get('/get-all-events', getAllEvents)
 
 router.put('/update-event/:id', updateEvent)
 
-router.delete('/delete-event', deleteEvent)
+router.delete('/delete-event/:id', deleteEvent)
 
 export default router

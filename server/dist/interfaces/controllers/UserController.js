@@ -15,7 +15,7 @@ const UserRepository_1 = require("../../infrastructure/database/UserRepository")
 const userRepository = new UserRepository_1.UserRepository();
 const userService = new UserService_1.UserService(userRepository);
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req);
+    console.log(req.body);
     const { email, password } = req.body;
     try {
         const user = yield userService.registerUser(email, password);
