@@ -1,0 +1,22 @@
+/* GENERAL */
+
+* { box-sizing: border-box; }
+
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	font-size: 100%;
+	font-family: sans-serif, roboto, arial, cambria;
+	line-height: 1.2;
+	background-color: e2e2e2;
+	color: black;
+}
+
+a:hover {
+	/* color: lightgrey; */
+	text-decoration: none !important;
+}
