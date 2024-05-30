@@ -14,15 +14,16 @@ function ProjectWrapper({ project }) {
                 id={ project._id }
                 name={ project.title }
                 description={ project.description }
+                location={ project.location }
                 date={ project.date = moment().format('YYYY-MM-DD') }
                 progressbar = { project.progressbar || 85 } // default 85%
-                pic={ String(project.image) }
+                pic={ String(project.imageurl) }
             />
         </div>
     );
 }
 
-export default function ProjectContainer({ projects, state }) {
+export default function ProjectContainer({ projects }) {
 
     // toggler
     const [toggleupdatecard, setToggleupdatecard] = useState(false);
@@ -50,7 +51,7 @@ export default function ProjectContainer({ projects, state }) {
             }
 		</div>
             <AddProgressIcon togglecard={ handleToggleCard } />
-            { toggleupdatecard && <AddProjectCard title="Create Project" type="project" /> }
+            { toggleupdatecard && <AddProjectCard title="Create Project" /> }
 	</div>
 </section>
     );

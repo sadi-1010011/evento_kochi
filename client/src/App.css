@@ -36,7 +36,12 @@
     border-bottom-right-radius: 2cm;
 }
 
+.project-title {
+  color: #fff;
+}
+
 .project-date {
+  color: #fff;
   padding: 1.4rem 0;
   font-size: 1.3rem;
   font-weight: 600;

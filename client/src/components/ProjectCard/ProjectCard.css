@@ -93,9 +93,6 @@
 	font-weight: 500;
 }
 
-/* .product-price:after {
-	content: '$';
-} */
 
 .buy-btn {
 	display: block;
@@ -114,7 +111,7 @@
 
 .buy-btn:hover {
 	color: black;
-	background-color: white;
+	background-color: wheat;
 }
 
 .buy-btn:active {

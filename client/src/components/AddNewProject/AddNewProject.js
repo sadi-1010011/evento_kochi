@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import plusIcon from '../../img/plus.png';
-// import projectIcon from '../img/project1.png';
-import './AddNewProject.css';
 import { useNavigate } from "react-router-dom";
+import LocationIcon from './../../img/location.png';
+import projectThumbnail from './../../img/project-thumbnail.png';
+import './AddNewProject.css';
 
 export function AddProgressIcon({ togglecard }) {
     return (
@@ -15,28 +16,26 @@ export function AddProgressIcon({ togglecard }) {
     );
 }
 
-export function AddProjectCard({ editExistingProject=false, projectId='' }) {
+export function AddProjectCard({ editExistingProject = false, projectId = '' }) {
 
     const navigate = useNavigate();
-    const myurl = 'https://ject-pro.herokuapp.com';
+    const baseurl = 'http://localhost:4848/api';
 
     // DEFAULT PROJECT
     const [newInput, setNewInput] = useState({
-        state: 'current',
-        name: '',
+        title: '',
         description: '',
         date: '',
-        type: 'Project',
-        progressbar: 5,
-        // progress: {},
-        // pic: '',
+        location: 'Kochi',
+        imageurl: '',
+        timestamp: Date.now(),
     });
 
     // EDIT EXISTING PROJECT
     useEffect(() => {
         // console.log(projectId)
         if (editExistingProject && projectId) {
-            fetch(`${myurl}/projects/${projectId}`,  {
+            fetch(`${baseurl}/get-event/${projectId}`,  {
                 headers : { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -44,16 +43,15 @@ export function AddProjectCard({ editExistingProject=false, projectId='' }) {
                 )
                 .then((response) => response.json())
                 .then((projectData) => {
+                    console.log('editing project: ',projectData);
                     // add to newinput
                     setNewInput({
-                        state: projectData.state,
-                        name: projectData.name,
+                        title: projectData.title,
                         description: projectData.description,
                         date: projectData.date,
-                        type: projectData.type,
-                        progressbar: projectData.progressbar || 5
-                        // progress: {},
-                        // pic: '',
+                        location: projectData.location,
+                        timestamp: projectData.timestamp,
+                        imageurl: projectData.imageurl,
                     });
                 })
                 .catch((err) => {
@@ -61,8 +59,7 @@ export function AddProjectCard({ editExistingProject=false, projectId='' }) {
                 });
        
             }
-        else console.log('creating new project -');
-    }, [editExistingProject, projectId]);
+    }, [editExistingProject]);
 
     // UI-UX feature
     useEffect(() => {
@@ -83,15 +80,15 @@ export function AddProjectCard({ editExistingProject=false, projectId='' }) {
         event.preventDefault();
         const { value } = event.target;
         setNewInput(prevInput => {
-            return { ...prevInput, name: value }
+            return { ...prevInput, title: value }
         });
     }
 
-    function handleState(value) {
-        setNewInput(prevInput => {
-            return { ...prevInput, state: value }
-        });
-    }
+    // function handleState(value) {
+    //     setNewInput(prevInput => {
+    //         return { ...prevInput, state: value }
+    //     });
+    // }
 
     function handleDescription(event) {
         event.preventDefault();
@@ -117,6 +114,14 @@ export function AddProjectCard({ editExistingProject=false, projectId='' }) {
 
     function handlePicUpload(event) {
         event.preventDefault();
+
+        const { value } = event.target;
+        setNewInput(prevInput => {
+            return {
+                    ...prevInput,
+                    imageurl: value
+                }
+        });
         // let { files } = event.target.files;
         // let reader = new FileReader();
         // let pic;
@@ -134,6 +139,18 @@ export function AddProjectCard({ editExistingProject=false, projectId='' }) {
         //         }
         // });
     }
+
+    function handleLocation(event) {
+        event.preventDefault();
+
+        const { value } = event.target;
+        setNewInput(prevInput => {
+            return {
+                    ...prevInput,
+                    location: value
+                }
+        });
+    }
     
     function handleSubmit(event) {
         event.preventDefault();
@@ -145,61 +162,56 @@ export function AddProjectCard({ editExistingProject=false, projectId='' }) {
         if (editExistingProject && projectId) {
             // UPDATE
             console.log(newInput);
-            axios.post(`${myurl}/projects/update/${projectId}`, newInput)
+            axios.put(`${baseurl}/admin/update-event/${projectId}`, newInput)
                 .then(res => console.log(res.data));
                 navigate(-1); // previous page
-        }
-        else { // CREATE
-            axios.post(`${myurl}/projects/create`, newInput)
-                .then(res => {
-                    console.log(res.data)
-                    window.location.reload(); // reload page
-                });
+        } else {   
+            // CREATE
+            axios.post(`${baseurl}/admin/create-event`, newInput)
+            .then(res => {
+                console.log(res.data)
+                window.location.reload(); // reload page
+            });
         }
     }
 
     function handleClear(event) {
         event.preventDefault();
         setNewInput({
-            state: 'current',
-            name: '',
+            title: '',
             description: '',
             date: '',
-            type: 'Project',
-            progressbar: 5
-            // progress: {},
-            // pic: 'project1.png',
+            location: '',
+            timestamp: '',
+            imageurl: '',
         });
     }
 
 
     return (
-        <div className="container-fluid pt-5 pb-5">
-            <div className="updateinput-card">
-                <h3 className="updateinput-title">{ editExistingProject ? 'Edit Project' : 'Create Project' }</h3>
-                {/* <img src={ projectIcon } className="updateinput-image" alt="projectPic" /> */}
-
-                <form action="" className="form-group">
-                    
-                    <div className="project-state">
-                        <span onClick={ () => handleState('complete') } className="projectstate-btn">complete</span>
-                        <span onClick={ () => handleState('current') } className="projectstate-btn">current</span>
-                        <span onClick={ () => handleState('coming') } className="projectstate-btn">coming</span>
-                    </div>
-
-                    { <div><input type="text" className="form-control bg-dark text-white" placeholder="project title.." onChange={ handleName } value={ newInput.name } /></div> }
-                    <label htmlFor="custom-fileupload" className="custom-uploadlabel">
-                        <input type="file" id="custom-fileupload" className="form-control" onChange={ handlePicUpload }/>
-                    </label>
-                    <textarea cols="5" rows="2" className="updateinput-description form-control" placeholder="description.." onChange={ handleDescription } value={ newInput.description }></textarea>
-                    <input type="date" className="updateinput-date form-control" onChange={ handleDate } />
-                    <div className="btn-container">
-                        <button className="updateinput-btn btn btn-success" onClick={ handleSubmit }>save</button>
-                        <button className="updateinput-btn btn btn-secondary" onClick={ handleClear }>clear</button>
-                    </div>
-                </form>
-
-            </div>
+        <div className="product-card">
+            <h3 className="updateinput-title">{ editExistingProject ? 'Edit Event' : 'Create Event' }</h3>
+            <form action="" className="form-group custom-form">
+                <img src={ newInput.imageurl || projectThumbnail } className="product-image" alt="projectPic" />
+                <label htmlFor="custom-fileupload" className="custom-uploadlabel">
+                    {/* <input type="file" id="custom-fileupload" className="form-control" onChange={ handlePicUpload }/> */}
+                    <input type="text" id="custom-fileupload" className="form-control" onChange={ handlePicUpload } value={ newInput.imageurl } placeholder="poster url.." />
+                </label>
+                <input type="text" className="event-title" placeholder="Event title.." onChange={ handleName } value={ newInput.title } />
+                <input type="text" className="event-description" placeholder="description.." onChange={ handleDescription } value={ newInput.description } />
+                <div className="locationwrapper">
+                    <img src={ LocationIcon } className='locationicon' alt="location" />
+                    <span>
+                        <input type="text" className="event-location" placeholder="location" onChange={ handleLocation } />
+                    </span>
+                </div>
+                <input type="date" className="updateinput-date form-control" onChange={ handleDate } />
+                <button className="buy-btn" onClick={ handleSubmit }>
+                    {
+                        editExistingProject ? 'Update Event' : 'Create Event'
+                    }
+                </button>
+            </form>
 		</div>
     );
 }

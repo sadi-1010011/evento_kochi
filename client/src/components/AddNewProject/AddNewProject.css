@@ -23,11 +23,54 @@
 
   /* ADDPROGRESSCARD */
 
+  .custom-form {
+    width: 100%;
+    text-align: left;
+  }
+
+  .event-title {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.42rem;
+    text-transform: capitalize;
+    padding: 1.2rem 0 0rem 0;
+    margin: 0 1.4rem;
+  }
+
+  .event-description {
+    width: 100%;
+    border: none;
+    outline: none;
+    margin: 0.55rem 0;
+    padding: 0 1.4rem;
+    color: rgb(152, 146, 146);
+    line-height: 1.22;
+    transition: color 0.2s;
+  }
+
+  
+  .updateinput-date {
+    display: inline-block;
+    margin: 0.7rem 0;
+    padding: 0 1.4rem;
+    /* width: 40%; */
+    color: #000;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+  }
+
+  .event-location {
+    border: none;
+    outline: none;
+  }
+  
   .updateinput-card {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    /* width: 70%; */
+    width: 80%;
     padding: 1.5rem 1rem;
     margin: 0 auto;
     color: white;
@@ -35,16 +78,6 @@
     border-radius: 12px;
   }
 
-  .project-state {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 6px 1rem 10px;
-  }
-
-  .projectstate-btn {
-    line-height: 1.7;
-  }
   
   .active-projectstate {
     border-bottom: 2px solid greenyellow;
@@ -52,10 +85,14 @@
 
   .updateinput-title {
     text-transform: capitalize;
+    text-align: center;
+    font-weight: 700;
+    padding: 0.8rem 0 0.8rem 0;
   }
 
   #custom-fileupload {
-    opacity: 0.3;
+    opacity: 0.9;
+    outline: none;
   }
 
   .custom-uploadlabel {
@@ -77,16 +114,6 @@
     background: transparent;
   }
 
-  .updateinput-date {
-    margin: 0.7rem auto;
-    width: 40%;
-    padding-bottom: 8px;
-    color: white;
-    text-align: center;
-    border: none;
-    border-bottom: 1px solid grey;
-    background-color: transparent;
-  }
 
   .btn-container {
     margin: 8px 0;

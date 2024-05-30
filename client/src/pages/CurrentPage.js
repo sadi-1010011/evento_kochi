@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import NavbarHeader from "../components/NavbarHeader/NavbarHeader";
 import ProjectContainer from "../components/ProjectContainer/ProjectContainer";
 import Footer from "../components/Footer/Footer";
-import axios from "axios";
 // import data from "../data/data"; // LOCAL SAMPLE DATA
 
 export default function CurrentPage() {
@@ -34,7 +33,7 @@ export default function CurrentPage() {
          )
          .then((response) => response.json())
          .then((actualData) => {
-            console.log(actualData);
+            // console.log(actualData);
             setProjects(actualData);
          })
          .catch((err) => {
