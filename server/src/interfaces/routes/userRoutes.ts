@@ -1,11 +1,16 @@
 import { Router } from 'express'
-import { createUser} from '../controllers/UserController'
 import { getAllEvents } from '../controllers/AdminController'
 import { getEvent } from '../controllers/EventController'
+import { checkUser } from '../../application/middleware/AuthMiddlewares'
+import { userLogin, userSignup } from '../controllers/AuthController'
 
 const router = Router()
 
-router.post('/register-user', createUser)
+router.get('/',checkUser)
+
+router.post('/signup', userSignup)
+
+router.post('/login', userLogin)
 
 router.get('/get-all-events', getAllEvents)
 
