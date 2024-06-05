@@ -1,16 +1,17 @@
-import projectThumbnail from '../../img/project-thumbnail-cropped.png';
+import projectThumbnail from "../../img/project-thumbnail.png"
 import LocationIcon from '../../img/location-pin.png';
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
+import moment from "moment";
 import './ProjectCard.css';
 
-function ProjectCard({ id, name, description, location, progressbar, pic }) {
-    
+function ProjectCard({ id, name, description, timestamp, location, progressbar, pic = '' }) {
+
     const progressref = useRef(null);
     const progress = Number(progressbar);
+    const momentTimestamp = moment(timestamp).format('LL');
 
-    const [imageSrc, setImageSrc] = useState(null);
-
+    // const [imageSrc, setImageSrc] = useState(null);
     // useEffect(() => {
     //     const loadImage = async () => {
     //         try {
@@ -40,13 +41,10 @@ function ProjectCard({ id, name, description, location, progressbar, pic }) {
         // progressref.current.textContent = '';
     }
 
-
-    // let posterlocation = `./posters/${pic}`s;
-    // let icon = require(`./posters/${pic}`).default; // for dynamic fetching img
-
     return (
         <div className="product-card">
             <img src={ pic || projectThumbnail } className="product-image" alt="projectPic" />
+            <span className="project-timestamp">{ momentTimestamp }</span>
             <div className="progress-bar" onMouseEnter={ showProgressPercent } onMouseLeave={ hideProgressPercent }>
                 <div ref={ progressref } className="progress-percent"></div>
             </div>

@@ -25,8 +25,7 @@ export function AddProjectCard({ editExistingProject = false, projectId = '' }) 
     const [newInput, setNewInput] = useState({
         title: '',
         description: '',
-        date: '',
-        location: 'Kochi',
+        location: 'kochi',
         imageurl: '',
         timestamp: Date.now(),
     });
@@ -48,7 +47,6 @@ export function AddProjectCard({ editExistingProject = false, projectId = '' }) 
                     setNewInput({
                         title: projectData.title,
                         description: projectData.description,
-                        date: projectData.date,
                         location: projectData.location,
                         timestamp: projectData.timestamp,
                         imageurl: projectData.imageurl,
@@ -104,10 +102,11 @@ export function AddProjectCard({ editExistingProject = false, projectId = '' }) 
     function handleDate(event) {
         event.preventDefault();
         const { value } = event.target;
+        console.log(value)
         setNewInput(prevInput => {
             return {
                     ...prevInput,
-                    date: value
+                    timestamp: value
                 }
         });
     }
@@ -180,7 +179,6 @@ export function AddProjectCard({ editExistingProject = false, projectId = '' }) 
         setNewInput({
             title: '',
             description: '',
-            date: '',
             location: '',
             timestamp: '',
             imageurl: '',
@@ -202,15 +200,16 @@ export function AddProjectCard({ editExistingProject = false, projectId = '' }) 
                 <div className="locationwrapper">
                     <img src={ LocationIcon } className='locationicon' alt="location" />
                     <span>
-                        <input type="text" className="event-location" placeholder="location" onChange={ handleLocation } />
+                        <input type="text" className="event-location" placeholder="location" onChange={ handleLocation } value={ newInput.location } />
                     </span>
                 </div>
-                <input type="date" className="updateinput-date form-control" onChange={ handleDate } />
+                <input type="date" className="updateinput-date form-control" onChange={ handleDate } value={ newInput.timestamp } />
                 <button className="buy-btn" onClick={ handleSubmit }>
                     {
                         editExistingProject ? 'Update Event' : 'Create Event'
                     }
                 </button>
+                <span className="form-control clear-form" onClick={ handleClear }>clear</span>
             </form>
 		</div>
     );

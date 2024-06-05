@@ -1,8 +1,11 @@
 
 .loading-container {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: .5rem auto;
     padding: .5rem;
+    min-height: 80vh;
 }
 
 .loader {

@@ -4,24 +4,11 @@ import './NavbarHeader.css';
 import lightbulbIcon from '../../img/lightbulb.svg';
 
 
-function NavbarHeader() {
+function NavbarHeader({ activetab = 0}) {
 
 	let isDarkMode = false;
-	// SET CURRENT TAB BASED ON CURRENT ROUTE
-	let location = useLocation().pathname;
-	location = location.substring(1);
-	useEffect(() => {
-		let i;
-		const currentTab = document.getElementsByClassName('nav-link');
-		// console.log('location: ',location); // check route
-		for (i=0; i<currentTab.length; i++) {
-			if ((currentTab[i].textContent).toLowerCase() === location) {
-				// console.log(currentTab[i]) // apply class
-				currentTab[i].parentElement.classList.add('active-tab');
-			}
-		}
-	});
-
+	// SET CURRENT TAB ACTIVE
+	
 	function darknightToggle() {
 		console.log('changing color theme to: ', `${isDarkMode?'light':'dark'}`);
 		const navbarelement = document.querySelector('.header-gradient');
@@ -55,22 +42,22 @@ function NavbarHeader() {
 		</div>
 
 		<div className="col-sm-4 col-md-4 col-lg-6">
-			<nav className="navbar navbar-expand navbar-dark justify-content-center">
+			<nav className="navbar navbar-expand navbar-dark align-items-center justify-content-center">
 				<div className="collapse navbar-collapse">
 					<ul className="navbar-nav m-auto">
 					  <li className="nav-item">
-						  <Link to="/complete" className="nav-link" data-route="complete">
-					    	complete
+						  <Link to="/complete" className={`${ activetab === 1 ? 'nav-link active-tab' : 'nav-link' }`}  data-route="complete">
+					    	Previous
 						  </Link>
 					  </li>
 					  <li className="nav-item">
-							<Link to="/current" className="nav-link" data-route="current">
-	   							current
+							<Link to="/current" className={`${ activetab === 2 ? 'nav-link active-tab' : 'nav-link' }`} data-route="current">
+	   							Today
 							</Link>
 					  </li>
 						  <li className="nav-item">
-							  <Link to="/coming" className="nav-link" data-route="coming">
-						    	coming
+							  <Link to="/coming" className={`${ activetab === 3 ? 'nav-link active-tab' : 'nav-link' }`}  data-route="coming">
+						    	Upcoming
 							</Link>
 					  </li>
 					</ul>

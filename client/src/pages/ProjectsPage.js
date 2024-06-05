@@ -87,7 +87,7 @@ export default function ProjectsPage() {
 
                 <div className="project-background-container">
                     <img className="project-thumbnail" src={ project.imageurl || projectThumbnail } alt="project-thumbnail" />
-                    <h4 className="project-date">{ moment(project.date).utc().format('YYYY-MM-DD') || project.date }</h4>
+                    <h4 className="project-date">{ project.timestamp || moment(project.date).utc().format('YYYY-MM-DD') }</h4>
                 </div>
 
 

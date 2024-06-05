@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+.serverUnavailable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
 /* PROJECTS PAGE */
 
 .projectpage-wrapper {

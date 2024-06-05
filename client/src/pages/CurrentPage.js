@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import NavbarHeader from "../components/NavbarHeader/NavbarHeader";
 import ProjectContainer from "../components/ProjectContainer/ProjectContainer";
 import Footer from "../components/Footer/Footer";
+import Loading from "../components/Loading/Loading";
+import checkDate from "../utility/checkDate";
+import moment from "moment";
 // import data from "../data/data"; // LOCAL SAMPLE DATA
 
 export default function CurrentPage() {
@@ -33,6 +36,20 @@ export default function CurrentPage() {
          )
          .then((response) => response.json())
          .then((actualData) => {
+
+            // only current events
+            // !!!!!!!!!!!!!!!!
+
+            for (const i in actualData) {
+                const eventDate = new moment(actualData[i].timestamp).format("DD-MM-YYYY");
+                const checkDateResult = checkDate(eventDate);
+                // dont show upcoming events, old events
+                if (checkDateResult === '+' || checkDateResult === '-') {
+                    // console.log(i,') event date === ', eventDate, i,' current date ==== ',currentDate)
+                    console.log('deleting ', eventDate)
+                    delete actualData[i]
+                }
+            }
             // console.log(actualData);
             setProjects(actualData);
          })
@@ -44,8 +61,10 @@ export default function CurrentPage() {
 
     return (
         <div className="App">
-            <NavbarHeader />
-            <ProjectContainer projects={ projects } state='current' />
+            <NavbarHeader activetab={2} />
+            {
+                projects ? (<ProjectContainer projects={ projects } state='current' />) : <Loading />
+            }
             <Footer />
         </div>
     );

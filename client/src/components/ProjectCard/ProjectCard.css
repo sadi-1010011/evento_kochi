@@ -1,6 +1,7 @@
 /* project card */
 
 .product-card {
+	position: relative;
 	color: black;
 	background-color: rgb(256,256,256);
 	margin: 1rem;
@@ -22,7 +23,10 @@
 
 .product-image {
 	width: 100%;
-	height: auto;
+	object-fit: cover;
+	aspect-ratio: 3/3;
+	/* height: auto; */
+	/* object-fit: contain; */
 	/* opacity: 0.68; */
 	/* border-bottom-left-radius: 22px; */
 	/* border-bottom-right-radius: 6px; */
@@ -65,6 +69,26 @@
 	color: rgb(152, 146, 146);
 	line-height: 1.22;
 	transition: color 0.2s;
+}
+
+.project-timestamp {
+	position: absolute;
+	top: 12px;
+	left: 10px;
+	display: inline-block;
+	padding: 4px 8px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	border-radius: 1rem;
+	transition: transform 0.22s;
+	color: black;
+	background-color: rgb(202, 229, 147);
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0 4px 10px 0px rgba(0, 0, 0, 0.19) !important;
+}
+
+.project-timestamp:hover {
+	transform: scale(1.12);
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0 4px 20px 0px rgba(0, 0, 0, 0.19) !important;
 }
 
 .locationwrapper {
@@ -111,7 +135,7 @@
 
 .buy-btn:hover {
 	color: black;
-	background-color: wheat;
+	background-color: rgb(179, 245, 193);
 }
 
 .buy-btn:active {

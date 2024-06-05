@@ -1,7 +1,7 @@
 
 .addprogress-wrapper {
     display: block;
-    margin: auto;
+    margin: 5vh auto;
     width: 2rem;
     padding: 1rem 0;
     /* background-color: blue; */
@@ -65,7 +65,21 @@
     border: none;
     outline: none;
   }
-  
+
+  .clear-form {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 0.88rem;
+    transition: 0.23s;
+  }
+
+  .clear-form:hover {
+    color: white;
+    font-weight: 700;
+    background-color: rgb(243, 173, 172);
+  }
+
   .updateinput-card {
     display: inline-flex;
     flex-direction: column;
