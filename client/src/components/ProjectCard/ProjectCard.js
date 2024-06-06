@@ -1,12 +1,21 @@
-import projectThumbnail from "../../img/project-thumbnail.png"
+// import projectThumbnail from "../../img/project-thumbnail.png"
+import FavPinkIcon from "../../img/fav_pink.png";
+import FavTranspIcon from "../../img/fav_transparent.png";
+import HostIcon_Dark from "../../img/host_dark.png";
 import LocationIcon from '../../img/location-pin.png';
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from 'react-router-dom';
+import ImgCarousel from "../ImgCarousel/ImgCarousel";
 import moment from "moment";
 import './ProjectCard.css';
 
-function ProjectCard({ id, name, description, timestamp, location, progressbar, pic = '' }) {
+import project1 from "../../img/project1.png";
+import project2 from "../../img/project2.jpg";
+import project3 from "../../img/project3.png";
 
+function ProjectCard({ id, name, timestamp, location, progressbar, pic = '', favourite = Math.random() < 0.5 }) {
+
+    const [favEvent, setFavEvent] = useState(favourite);
     const progressref = useRef(null);
     const progress = Number(progressbar);
     const momentTimestamp = moment(timestamp).format('LL');
@@ -41,15 +50,30 @@ function ProjectCard({ id, name, description, timestamp, location, progressbar, 
         // progressref.current.textContent = '';
     }
 
+    function setFavoriteEvent() {
+        setFavEvent(prevState => {
+            setFavEvent(!favEvent)
+        });
+        
+        // Now updagte in the server 
+        // ...
+    }
+
     return (
         <div className="product-card">
-            <img src={ pic || projectThumbnail } className="product-image" alt="projectPic" />
+            <ImgCarousel gallery={ [pic, project1, project2, project3] } />
             <span className="project-timestamp">{ momentTimestamp }</span>
+            <span className="project-favorite">
+                <img className="favicon_img" src={ favEvent ? FavPinkIcon : FavTranspIcon } alt="favicon" onClick={ setFavoriteEvent } />
+            </span>
             <div className="progress-bar" onMouseEnter={ showProgressPercent } onMouseLeave={ hideProgressPercent }>
                 <div ref={ progressref } className="progress-percent"></div>
             </div>
             <h3 className="product-title">{ name }</h3>
-            <p className="product-description">{ description }</p>
+            <div className="event-host">
+                <img className="hosticon_img" src={ HostIcon_Dark } alt="host_icon" />
+                <span className="host-name">host name</span>
+            </div>
             <div className="locationwrapper">
                 <img src={ LocationIcon } className='locationicon' alt="location" />
                 <span>{ location || 'kochi' }</span>

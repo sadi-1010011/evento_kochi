@@ -23,15 +23,14 @@
   justify-content: center;
   width: 100vw;
   min-height: 100vh;
-  background: rgb(2,0,36);
   background: linear-gradient(137deg, rgba(2,0,36,1) 0%, rgb(7, 66, 91) 35%, rgb(6, 39, 46) 100%);
 }
 
-.project-background-container {
+.event-container {
   display: block;
   width: 100%;
-  overflow: hidden;
-
+  color: white;
+  overflow-y: scroll;
 }
 
 .project-thumbnail {

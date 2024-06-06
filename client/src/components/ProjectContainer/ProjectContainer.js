@@ -13,7 +13,6 @@ function ProjectWrapper({ project, progress }) {
                 key={ project.id }
                 id={ project._id }
                 name={ project.title }
-                description={ project.description }
                 location={ project.location }
                 timestamp={ project.timestamp }
                 progressbar = { progress === 'complete' ? 100 : 85 } // default 85%

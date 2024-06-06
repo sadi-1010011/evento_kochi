@@ -10,6 +10,9 @@ import checkDate from "../utility/checkDate";
 export default function ComingPage() {
 
     const [projects, setProjects] = useState();
+    const REACT_APP_IP = '192.168.1.56';
+    const REACT_APP_PORT = '4848';
+
     const baseurl = 'http://localhost:4848/api/admin';
 
     useEffect(() => {
@@ -33,7 +36,7 @@ export default function ComingPage() {
                 // dont show current date events, upcoming events
                 if (checkDateResult === '0' || checkDateResult === '+') {
                     // console.log(i,') ', eventDate, i,') ',currentDate)
-                    console.log('deleting ', eventDate)
+                    // console.log('deleting ', eventDate)
                     delete actualData[i]
                 }
             }

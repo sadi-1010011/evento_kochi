@@ -9,7 +9,9 @@ import moment from "moment";
 
 export default function CurrentPage() {
     const [projects, setProjects] = useState();
-    const baseurl = 'http://localhost:4848/api/admin';
+    const REACT_APP_IP = '192.168.1.56';
+    const REACT_APP_PORT = '4848';
+    const baseurl = `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/admin`;
 
     useEffect(() => {
         // get data from BACKEND
@@ -46,7 +48,7 @@ export default function CurrentPage() {
                 // dont show upcoming events, old events
                 if (checkDateResult === '+' || checkDateResult === '-') {
                     // console.log(i,') event date === ', eventDate, i,' current date ==== ',currentDate)
-                    console.log('deleting ', eventDate)
+                    // console.log('deleting ', eventDate)
                     delete actualData[i]
                 }
             }

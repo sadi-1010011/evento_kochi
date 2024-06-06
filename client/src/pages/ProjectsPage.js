@@ -17,15 +17,12 @@ export default function ProjectsPage() {
     // values
     const { projectId } = useParams();
     const navigate = useNavigate();
-    const currentDate = moment().format('YYYY-MM-DD');
-
-    const baseurl = 'http://localhost:4848/api';
+    const REACT_APP_IP = '192.168.1.56';
+    const REACT_APP_PORT = '4848';
+    const baseurl = `http://${REACT_APP_IP}:${REACT_APP_PORT}/api`;
     
     // state
     const [project, setProject] = useState();
-    const [toggleupdatecard, setToggleupdatecard] = useState(false);
-     
-
 
     // GET EVENT FROM BACKEND
     useEffect(() => {
@@ -63,11 +60,6 @@ export default function ProjectsPage() {
         navigate(`/projects/update/${id}`);
     }
 
-    // toggler
-    function handleToggleCard() {
-        setToggleupdatecard( !toggleupdatecard );
-    }
-
     return (
         <div className="App">
 
@@ -78,31 +70,24 @@ export default function ProjectsPage() {
             
             (<div className="projectpage-wrapper">
 
-                <ProjectToolbar
+                {/* <ProjectToolbar
                     projectname={ project.title }
                     projectstate={ project.location }
                     onDelete={ () => deleteProject(project._id) }
                     onEdit={ () => editProject(project._id) }
-                    />
+                    /> */}
 
-                <div className="project-background-container">
-                    <img className="project-thumbnail" src={ project.imageurl || projectThumbnail } alt="project-thumbnail" />
-                    <h4 className="project-date">{ project.timestamp || moment(project.date).utc().format('YYYY-MM-DD') }</h4>
+                <div className="event-container">
+                    Event Page
                 </div>
-
-
-                {/* PROGRESS TREE */}
-
-                <section className="progress-tree">
-
-                    {/* {
-                        project.progress.length ? <ProgressContainer progress={ progress } editDescription={ (id, value) => handleEditDescription(id, value) } /> : <span>no progress added!</span>
-                    } */}
-
-                </section>
 
             </div>) }
         </div>
     );
-
+    
 }
+
+
+
+{/* <img className="project-thumbnail" src={ project.imageurl || projectThumbnail } alt="project-thumbnail" /> */}
+{/* <h4 className="project-date">{ project.timestamp || moment(project.date).utc().format('LL') }</h4> */}
