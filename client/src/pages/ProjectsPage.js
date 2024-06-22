@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import moment from "moment";
 import axios from "axios";
+// import moment from "moment";
 // custom components
-// import { AddProgressIcon } from '../components/AddNewProject/AddNewProject';
 import Loading from '../components/Loading/Loading';
-import ProjectToolbar from "../components/ProjectToolbar/ProjectToolbar";
-import projectThumbnail from '../img/project-thumbnail-cropped.png';
-// import ProgressContainer from '../components/ProgressContainer/ProgressContainer'
-// import AddNewProgress from "../components/AddNewProgress/AddNewProgress";
+import HostIcon_Dark from '../img/host_dark.png';
+import LocationIcon from '../img/location-pin.png';
+import ImgGridGallery from '../components/ImgGridGallery/ImgGridGallery';
 import '../App.css';
 
 
@@ -70,15 +68,33 @@ export default function ProjectsPage() {
             
             (<div className="projectpage-wrapper">
 
-                {/* <ProjectToolbar
-                    projectname={ project.title }
-                    projectstate={ project.location }
-                    onDelete={ () => deleteProject(project._id) }
-                    onEdit={ () => editProject(project._id) }
-                    /> */}
+                <div className="event-gallery-container">
+                    <ImgGridGallery />
+                </div>
 
-                <div className="event-container">
-                    Event Page
+                <h1 className="pt-3 px-4 align-left">{ project.title }</h1>
+
+                
+                <div className="event-host-wrapper">
+                    <img className="hosticon-img" src={ HostIcon_Dark } alt="host_icon" />
+                    <span className="host-name">host name</span>
+                </div>
+
+                <p className="event-description px-4" >{ project.description ? project.description : 'project description..' }</p>
+
+                <div className="locationwrapper px-2">
+                    <img src={ LocationIcon } className='locationicon' alt="location" />
+                    <span>{ project.location || 'kochi' }</span>
+                </div>
+
+                <div className="event-ticket-wrapper text-capitalize">
+                    <h2>Total price</h2>
+                    <span className="fw-bold" style={{ 'fontSize': '1.32rem'}}>0$</span>
+                </div>
+
+                {/* only for development stage */}
+                <div className="text-center" style={{ 'margin': '5cm auto'}}>
+                    <button onClick={ () => editProject(project.id) }>Edit Project</button>
                 </div>
 
             </div>) }

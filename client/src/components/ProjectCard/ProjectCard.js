@@ -60,24 +60,33 @@ function ProjectCard({ id, name, timestamp, location, progressbar, pic = '', fav
     }
 
     return (
+
         <div className="product-card">
+
             <ImgCarousel gallery={ [pic, project1, project2, project3] } />
+            
             <span className="project-timestamp">{ momentTimestamp }</span>
+            
             <span className="project-favorite">
                 <img className="favicon_img" src={ favEvent ? FavPinkIcon : FavTranspIcon } alt="favicon" onClick={ setFavoriteEvent } />
             </span>
+
             <div className="progress-bar" onMouseEnter={ showProgressPercent } onMouseLeave={ hideProgressPercent }>
                 <div ref={ progressref } className="progress-percent"></div>
             </div>
+
             <h3 className="product-title">{ name }</h3>
+
             <div className="event-host">
                 <img className="hosticon_img" src={ HostIcon_Dark } alt="host_icon" />
                 <span className="host-name">host name</span>
             </div>
+
             <div className="locationwrapper">
                 <img src={ LocationIcon } className='locationicon' alt="location" />
                 <span>{ location || 'kochi' }</span>
             </div>
+
             <Link to={`/projects/${ id }`}>
                 <button className="buy-btn">
                     explore

@@ -49,7 +49,7 @@ export default function CurrentPage() {
                 if (checkDateResult === '+' || checkDateResult === '-') {
                     // console.log(i,') event date === ', eventDate, i,' current date ==== ',currentDate)
                     // console.log('deleting ', eventDate)
-                    delete actualData[i]
+                    // delete actualData[i]
                 }
             }
             // console.log(actualData);

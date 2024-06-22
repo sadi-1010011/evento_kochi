@@ -1,9 +1,9 @@
 .App {
-  background-color: #e2e2e2;
+  background-color: #f3f3f3;
   min-height: 100vh;
-  color: black;
-  text-align: center;
 }
+
+::-webkit-scrollbar { display: none; }
 
 .serverUnavailable {
   display: flex;
@@ -16,21 +16,63 @@
 
 .projectpage-wrapper {
   padding: 0 0 3rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100vw;
-  min-height: 100vh;
+  min-height: 120vh;
+  color: #fff;
   background: linear-gradient(137deg, rgba(2,0,36,1) 0%, rgb(7, 66, 91) 35%, rgb(6, 39, 46) 100%);
 }
 
-.event-container {
+.event-gallery-container {
   display: block;
   width: 100%;
   color: white;
   overflow-y: scroll;
+}
+
+.event-host-wrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	margin: 0.3rem 0;
+	padding: 0.6rem 1.4rem;
+	color: rgb(152, 146, 146);
+	line-height: 1.22;  
+	transition: color 0.2s;
+}
+
+.host-name {
+	color: rgb(156, 154, 154);
+	padding-left: 6px;
+	line-height: 1.22;
+	font-weight: 600;
+	font-size: large;
+}
+
+.hosticon-img {
+  width: 50px;
+  height: auto;
+  padding: 5px;
+  margin-right: 0.6rem;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: #a7adb3;
+}
+
+.event-ticket-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 1rem;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #fff;
+  background-color: #1b1b1b;
 }
 
 .project-thumbnail {
@@ -40,28 +82,6 @@
     height: auto;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 2cm;
-}
-
-.project-title {
-  color: #fff;
-}
-
-.project-date {
-  color: #fff;
-  padding: 1.4rem 0;
-  font-size: 1.3rem;
-  font-weight: 600;
-
-}
-
-.setprogress-wrapper {
-  margin: 3rem auto;
-  padding: 1rem 0;
-}
-
-.input-progress {
-  width: 60vw;
-  margin: .8rem auto;
 }
 
 .bottombar-btns-wrapper {
@@ -78,13 +98,7 @@
   margin: auto .6rem;
 }
 
-/* progress tree --- */
 
-.progress-tree {
-  width: 100%;
-  min-height: 30vh;
-  overflow: hidden;
-}
 
 /* EDIT PAGE */
 
@@ -99,4 +113,26 @@
   overflow: hidden;
 }
 
-::-webkit-scrollbar { display: none; }
+
+/* CATOGORY PAGE */
+
+.catogory-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    color: #000;
+    background-color: #f3f3f3;
+}
+
+.catogory_card {
+  width: 100%;
+  padding: 2rem;
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 8px;
+  background-color: #fff;
+}

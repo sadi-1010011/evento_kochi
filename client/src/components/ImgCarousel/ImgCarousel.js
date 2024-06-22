@@ -15,6 +15,7 @@ export default function ImgCarousel({ gallery }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+    swipeToSlide: true,
     pauseOnHover: true,
     waitForAnimate: false
   };
@@ -23,7 +24,7 @@ export default function ImgCarousel({ gallery }) {
     <div className="slider-container">
       <Slider {...settings}>
         {
-            gallery.map(pic => <img src={ pic || projectThumbnail } className="product-image" alt="projectPic" />)
+            gallery.map(pic => <img key={pic} src={ pic || projectThumbnail } className="product-image" alt="projectPic" />)
         }
       </Slider>
     </div>

@@ -1,0 +1,51 @@
+/* IMG GRID GALLERY STYLEs */
+
+.grid-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 68vh;
+}
+
+.grid-column1 {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.grid-column2 {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.grid-column1 img, .grid-column2 img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    height: auto;
+}
+
+
+/* RESPONSIVE GRID GALLERY */
+
+
+@media screen and (max-width: 800px) {
+    .grid-column1, .grid-column2 {
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+
+/* smartphone view */
+@media screen and (max-width: 600px) {
+    .grid-column1, .grid-column2 {
+      flex: 33.33%;
+      max-width: 100%;
+      padding: 0 2px;
+    }
+
+    .grid-column1 img, .grid-column2 img {
+        margin-top: 4px;
+    }
+  }

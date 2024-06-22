@@ -10,6 +10,7 @@ import ComingPage from './pages/ComingPage';
 import ProjectsPage from './pages/ProjectsPage';
 import EditPage from './pages/EditPage';
 import NoPage from './pages/NoPage';
+import CatogoryPage from './pages/CatogoryPage';
 
 
 // ROUTEs
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "complete",
     element: <CompletePage />,
+  },
+  {
+    path: "catogory",
+    element: <CatogoryPage />
   },
   {
     path: "projects/:projectId",
